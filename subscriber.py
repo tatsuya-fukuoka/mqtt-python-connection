@@ -8,8 +8,10 @@ def on_connect(client, obj, flags, rc):
 
 # サブスクライブしているトピックでメッセージが受信された時の呼び出し関数
 def on_message(client, obj, msg):
-    print(f'TOPIC: {msg.topic}, QOS: {msg.qos}, PAYLOAD: {msg.payload}')
-    #print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+    msg_decode=str(msg.payload.decode("utf-8","ignore"))
+    json_data = json.loads(msg_decode)
+    print(json_data, type(json_data)
+    #print(f'TOPIC: {msg.topic}, QOS: {msg.qos}, PAYLOAD: {msg.payload}')
 
 # ブローカがサブスクライブのリクエストに応答する時の呼び出す関数
 def on_subscribe(client, obj, mid, granted_qos):
