@@ -33,6 +33,9 @@ if __name__ == '__main__':
 
     i = 0
     while True:
-        client.publish(TOPIC, f"Hello!! {i} time", qos=QOS) # メッセージ送信
+        data = {"1":"time", "2": "data"}
+        str_data = json.dumps(data)
+        client.publish(TOPIC, str_data, qos=QOS)
+        #client.publish(TOPIC, f"Hello!! {i} time", qos=QOS) # メッセージ送信
         i+=1
         sleep(3)
